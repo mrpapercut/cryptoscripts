@@ -1,0 +1,17 @@
+{
+    "projects": [{
+        "displayName": "eslint",
+        "runner": "jest-runner-eslint",
+        "testMatch": [
+            "<rootDir>/src/**/*.js"
+        ]
+    }, {
+        "displayName": "test",
+        "setupFiles": [
+            "./test/helpers/jestSetup.js"
+        ],
+        "testMatch": [
+            "<rootDir>/test/**/*.spec.js"
+        ]
+    }]
+}
