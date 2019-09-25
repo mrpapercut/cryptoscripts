@@ -42,10 +42,11 @@ Assorted algorithms &amp; other crypto-related scripts
 ## Checksums
 - Adler-32
 - fletcher-4/8/16/32
-- Luhn algorithm
-- Verhoeff algorithm
 
 ## Encoders
-- Uuencoding
 - Xxencoding
 - Ascii85
+
+# Miscellaneous
+- Luhn algorithm
+- Verhoeff algorithm

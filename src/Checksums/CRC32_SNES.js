@@ -1,5 +1,9 @@
 import Base from '../Base';
 
+/**
+ * Checksum algorithm of Super Nintendo ROMs
+ */
+
 class CRC32_SNES extends Base {
     constructor() {
         super();
