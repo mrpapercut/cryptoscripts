@@ -59,7 +59,38 @@ class Base64 extends Base {
     }
 
     decode(input) {
+        let len = input.length;
 
+        const char_array_4 = new Array();
+
+        let i = 0;
+        let k = 0;
+
+        let result = [];
+
+        while (len--) {
+            char_array_4[i++] = input[k++];
+
+            if (i === 4) {
+                result.push(
+                    char_array_4.map(c => { // Get original char from base64_chars
+                        let index = this.base64_chars.indexOf(c);
+                        if (index !== -1) {
+                            return index.toString(2).padStart(6, 0);
+                        }
+                    })
+                    .filter(Boolean) // Clear empty values in array
+                    .join('')
+                    .match(/(.{8})/g) // Split string into pairs of 8bits
+                    .map(m => String.fromCharCode(parseInt(m, 2))) // 8bit to Character
+                    .join('')
+                );
+
+                i = 0;
+            }
+        }
+
+        return result.join('');
     }
 }
 
