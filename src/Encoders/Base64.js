@@ -61,19 +61,19 @@ class Base64 extends Base {
     decode(input) {
         let len = input.length;
 
-        const char_array_4 = new Array();
+        const charArray = new Array(4);
 
         let i = 0;
         let k = 0;
 
-        let result = [];
+        const result = [];
 
         while (len--) {
-            char_array_4[i++] = input[k++];
+            charArray[i++] = input[k++];
 
             if (i === 4) {
                 result.push(
-                    char_array_4.map(c => { // Get original char from base64_chars
+                    charArray.map(c => { // Get original char from base64_chars
                         let index = this.base64_chars.indexOf(c);
                         if (index !== -1) {
                             return index.toString(2).padStart(6, 0);
