@@ -1,6 +1,6 @@
-import UUEncoding from '../../src/Encoders/UUEncoding';
+import Uuencoding from '../../src/Encoders/Uuencoding';
 
-const encoder = new UUEncoding();
+const encoder = new Uuencoding();
 
 const shortString = 'Hello, world!';
 const shortStringProof = [
@@ -9,11 +9,11 @@ const shortStringProof = [
     ""
 ].join('\n');
 
-test('Should encode short string using UUEncoding', () => {
+test('Should encode short string using uuencoding', () => {
     expect(encoder.encode(shortString)).toEqual(shortStringProof);
 });
 
-test('Should decode UUencoded short string', () => {
+test('Should decode uuencoded short string', () => {
     const encodedString = encoder.encode(shortString);
     expect(encoder.decode(encodedString)).toEqual(shortString);
 });
@@ -35,11 +35,11 @@ const longStringProof = [
     ""
 ].join('\n');
 
-test('Should encode long string using UUEncoding', () => {
+test('Should encode long string using uuencoding', () => {
     expect(encoder.encode(longString)).toEqual(longStringProof);
 });
 
-test('Should decode UUencoded long string', () => {
+test('Should decode uuencoded long string', () => {
     const encodedString = encoder.encode(longString);
     expect(encoder.decode(encodedString)).toEqual(longString);
 });
