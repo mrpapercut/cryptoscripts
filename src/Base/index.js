@@ -45,6 +45,21 @@ class Base {
 
         return res;
     }
+
+    remap3to4chars(input, transform) {
+        let resArr = new Array(4);
+
+        resArr[0] = (input[0] & 0xfc) >> 2;
+        resArr[1] = ((input[0] & 0x03) << 4) + ((input[1] & 0xf0) >> 4);
+        resArr[2] = ((input[1] & 0x0f) << 2) + ((input[2] & 0xc0) >> 6);
+        resArr[3] = input[2] & 0x3f;
+
+        if (transform && transform.constructor instanceof Function) {
+            resArr = resArr.map(transform);
+        }
+
+        return resArr;
+    }
 }
 
 export default Base;
