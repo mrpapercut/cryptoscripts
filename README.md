@@ -1,5 +1,23 @@
 # cryptoscripts
-Assorted algorithms &amp; other crypto-related scripts
+Assorted algorithms &amp; other crypto-related scripts. All written in Javascript, most from scratch
+
+# Done:
+## Checksums
+- CRC32/BZIP2
+- CRC32/SNES
+
+# Ciphers
+- RC4
+
+# Compressors
+- LZ77
+
+# Encoders
+- Base64
+- Huffman
+- uuencoding
+- xxencoding
+- yEnc
 
 # Wishlist:
 ## Hashers
@@ -44,7 +62,6 @@ Assorted algorithms &amp; other crypto-related scripts
 - fletcher-4/8/16/32
 
 ## Encoders
-- Xxencoding
 - Ascii85
 
 # Miscellaneous
