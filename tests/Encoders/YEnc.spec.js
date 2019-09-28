@@ -15,13 +15,13 @@ const shortStringProof = String.fromCharCode(...[
     0x69,0x7A,0x65,0x3D,0x31,0x33,0x0D,0x0A
 ]);
 
-test('Should encode short string using xxencoding', () => {
+test('Should encode short string using yEnc', () => {
     expect(encoder.encode(shortString)).toEqual(shortStringProof);
 });
 
-test('Should decode xxencoded short string', () => {
-    // const encodedString = encoder.encode(shortString);
-    // expect(encoder.decode(encodedString)).toEqual(shortString);
+test('Should decode yEncoded short string', () => {
+    const encodedString = encoder.encode(shortString);
+    expect(encoder.decode(encodedString)).toEqual(shortString);
 });
 
 const longString = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vel suscipit urna, ac auctor purus. Ut a nisl aliquam, pulvinar tortor quis, vehicula elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Phasellus sollicitudin tempor vestibulum. Pellentesque rutrum accumsan euismod. Suspendisse eros nunc, venenatis eu mi ut, convallis malesuada metus.';
@@ -63,11 +63,11 @@ const longStringProof = String.fromCharCode(...[
     0x38,0x31,0x0D,0x0A
 ]);
 
-test('Should encode long string using xxencoding', () => {
+test('Should encode long string using yEnc', () => {
     expect(encoder.encode(longString)).toEqual(longStringProof);
 });
 
-test('Should decode xxencoded long string', () => {
-    // const encodedString = encoder.encode(longString);
-    // expect(encoder.decode(encodedString)).toEqual(longString);
+test('Should decode yEncoded long string', () => {
+    const encodedString = encoder.encode(longString);
+    expect(encoder.decode(encodedString)).toEqual(longString);
 });

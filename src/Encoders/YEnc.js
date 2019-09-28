@@ -43,7 +43,32 @@ class YEnc extends Base {
     }
 
     decode(input) {
+        const lines = input.split('\r\n');
 
+        if (!lines[0].match(/^=ybegin/)) return 'Invalid yEncoding';
+
+        // Get info from header
+        const [fm, linelen, decodelen, filename] = lines[0].match(/=ybegin line=(\d+) size=(\d*) name=(.*)/);
+        lines.shift();
+
+        // Remove last line of whitespace
+        if (lines[lines.length - 1].match(/^\s*$/)) lines.pop();
+        // Last line contains decodelen (again) and optional checksum that we ignore
+        if (lines[lines.length - 1].match(/^=yend/)) lines.pop();
+
+        const resArr = new Array(decodelen);
+
+        let k = 0;
+        lines.forEach(line => {
+            for (let i = 0; i < line.length; i++) {
+                // Handle escape characters
+                if (line.charCodeAt(i) === 61) i++;
+
+                resArr[k++] = String.fromCharCode((line.charCodeAt(i) - 42) & 0xff);
+            }
+        });
+
+        return resArr.join('');
     }
 }
 
