@@ -3,34 +3,38 @@ class Base {
 
     }
 
-    bitstringToArray(data) {
-        let output = new Array();
+    bitstringToByteArray(input) {
+        let output = new Uint8Array(input.length / 8);
 
-        for (let i = 0; i < data.length; i += 8) {
-            output.push(String.fromCharCode(parseInt(data.substring(i, i + 8), 2)));
+        for (let i = 0, j = 0; i < input.length; i += 8) {
+            output[j++] = parseInt(input.substring(i, i + 8), 2);
         }
 
         return output;
     }
 
-    byteArrayToBase64() {
+    byteArrayToBitstring(input) {
+        let output = [];
 
+        for (let i in input) output[i] = input[i].toString(2).padStart(8, 0);
+
+        return output.join('');
     }
 
-    base64ToBytes() {
+    stringToByteArray(input) {
+        let output = new Uint8Array(input.length);
 
+        for (let i in input) output[i] = input.charCodeAt(i);
+
+        return output;
     }
 
-    bytesToBitstring() {
+    byteArrayToString(input) {
+        let output = [];
 
-    }
+        for (let i in input) output[i] = String.fromCharCode(input[i]);
 
-    stringToByteArray(str) {
-        let arr = new Uint8Array(str.length);
-
-        for (let i in str) arr[i] = str.charCodeAt(i);
-
-        return arr;
+        return output.join('');
     }
 
     decToHex(dec, padLength = 0) {
@@ -59,6 +63,10 @@ class Base {
         }
 
         return resArr;
+    }
+
+    remap4to5chars(input, transform) {
+
     }
 }
 

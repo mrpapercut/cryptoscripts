@@ -1,24 +1,17 @@
 import Uuencoding from '../../src/Encoders/Uuencoding';
+import {
+    SHORTSTRING as shortString,
+    LONGSTRING as longString
+} from '../TestBase';
 
 const encoder = new Uuencoding();
 
-const shortString = 'Hello, world!';
 const shortStringProof = [
     "-2&5L;&\\L('=O<FQD(0``",
     "`",
     ""
 ].join('\n');
 
-test('Should encode short string using uuencoding', () => {
-    expect(encoder.encode(shortString)).toEqual(shortStringProof);
-});
-
-test('Should decode uuencoded short string', () => {
-    const encodedString = encoder.encode(shortString);
-    expect(encoder.decode(encodedString)).toEqual(shortString);
-});
-
-const longString = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vel suscipit urna, ac auctor purus. Ut a nisl aliquam, pulvinar tortor quis, vehicula elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Phasellus sollicitudin tempor vestibulum. Pellentesque rutrum accumsan euismod. Suspendisse eros nunc, venenatis eu mi ut, convallis malesuada metus.';
 const longStringProof = [
     "M3&]R96T@:7!S=6T@9&]L;W(@<VET(&%M970L(&-O;G-E8W1E='5R(&%D:7!I",
     "M<V-I;F<@96QI=\"X@06QI<75A;2!V96P@<W5S8VEP:70@=7)N82P@86,@875C",
@@ -34,6 +27,15 @@ const longStringProof = [
     "`",
     ""
 ].join('\n');
+
+test('Should encode short string using uuencoding', () => {
+    expect(encoder.encode(shortString)).toEqual(shortStringProof);
+});
+
+test('Should decode uuencoded short string', () => {
+    const encodedString = encoder.encode(shortString);
+    expect(encoder.decode(encodedString)).toEqual(shortString);
+});
 
 test('Should encode long string using uuencoding', () => {
     expect(encoder.encode(longString)).toEqual(longStringProof);

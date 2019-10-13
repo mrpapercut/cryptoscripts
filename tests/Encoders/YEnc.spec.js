@@ -1,8 +1,11 @@
 import YEnc from '../../src/Encoders/YEnc';
+import {
+    SHORTSTRING as shortString,
+    LONGSTRING as longString
+} from '../TestBase';
 
 const encoder = new YEnc();
 
-const shortString = 'Hello, world!';
 const shortStringProof = String.fromCharCode(...[
     0x3D,0x79,0x62,0x65,0x67,0x69,0x6E,0x20,
     0x6C,0x69,0x6E,0x65,0x3D,0x31,0x32,0x38,
@@ -15,16 +18,6 @@ const shortStringProof = String.fromCharCode(...[
     0x69,0x7A,0x65,0x3D,0x31,0x33,0x0D,0x0A
 ]);
 
-test('Should encode short string using yEnc', () => {
-    expect(encoder.encode(shortString)).toEqual(shortStringProof);
-});
-
-test('Should decode yEncoded short string', () => {
-    const encodedString = encoder.encode(shortString);
-    expect(encoder.decode(encodedString)).toEqual(shortString);
-});
-
-const longString = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vel suscipit urna, ac auctor purus. Ut a nisl aliquam, pulvinar tortor quis, vehicula elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Phasellus sollicitudin tempor vestibulum. Pellentesque rutrum accumsan euismod. Suspendisse eros nunc, venenatis eu mi ut, convallis malesuada metus.';
 const longStringProof = String.fromCharCode(...[
     0x3D,0x79,0x62,0x65,0x67,0x69,0x6E,0x20,0x6C,0x69,0x6E,0x65,0x3D,0x31,0x32,0x38,
     0x20,0x73,0x69,0x7A,0x65,0x3D,0x34,0x38,0x31,0x20,0x6E,0x61,0x6D,0x65,0x3D,0x62,
@@ -62,6 +55,15 @@ const longStringProof = String.fromCharCode(...[
     0x9D,0x58,0x0D,0x0A,0x3D,0x79,0x65,0x6E,0x64,0x20,0x73,0x69,0x7A,0x65,0x3D,0x34,
     0x38,0x31,0x0D,0x0A
 ]);
+
+test('Should encode short string using yEnc', () => {
+    expect(encoder.encode(shortString)).toEqual(shortStringProof);
+});
+
+test('Should decode yEncoded short string', () => {
+    const encodedString = encoder.encode(shortString);
+    expect(encoder.decode(encodedString)).toEqual(shortString);
+});
 
 test('Should encode long string using yEnc', () => {
     expect(encoder.encode(longString)).toEqual(longStringProof);

@@ -18,6 +18,7 @@ Assorted algorithms &amp; other crypto-related scripts. All written in Javascrip
 - uuencoding
 - xxencoding
 - yEnc
+- prime factorization encoding (custom)
 
 # Wishlist:
 ## Hashers
@@ -62,7 +63,7 @@ Assorted algorithms &amp; other crypto-related scripts. All written in Javascrip
 - fletcher-4/8/16/32
 
 ## Encoders
-- Ascii85
+- Ascii85/Z85 (https://rfc.zeromq.org/spec:32/Z85)
 
 # Miscellaneous
 - Luhn algorithm
