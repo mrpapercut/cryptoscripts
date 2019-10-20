@@ -122,6 +122,18 @@ class LZ77 extends Base {
             return null;
         }
     }
+
+    safeEncode(input) {
+        const compressed = this.compress(input);
+
+        return this.encodeBitstring(compressed);
+    }
+
+    safeDecode(input) {
+        const decoded = this.decodeBitstring(input);
+
+        return this.decompress(decoded);
+    }
 }
 
 export default LZ77;

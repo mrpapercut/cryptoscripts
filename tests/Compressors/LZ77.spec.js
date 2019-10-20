@@ -136,29 +136,26 @@ for (let i = 200; i <= 400; i += 50) {
     const lz77 = new LZ77(i);
 
     test(`Should compress & decompress short string using LZ77 algorithm with windowSize ${i}`, () => {
-        const compressed = lz77.compress(shortString);
-        const encoded = lz77.encodeBitstring(compressed);
+        const encodedCompressed = lz77.safeEncode(shortString);
 
-        // console.log(`Original length: ${shortString.length}, Compressed length: ${encoded.length}`);
+        // console.log(`Original length: ${shortString.length}, Compressed length: ${encodedCompressed.length}`);
 
-        expect(lz77.decompress(lz77.decodeBitstring(encoded))).toEqual(shortString);
+        expect(lz77.safeDecode(encodedCompressed)).toEqual(shortString);
     });
 
     test(`Should compress & decompress long string using LZ77 algorithm with windowSize ${i}`, () => {
-        const compressed = lz77.compress(longString);
-        const encoded = lz77.encodeBitstring(compressed);
+        const encodedCompressed = lz77.safeEncode(longString);
 
-        // console.log(`Original length: ${longString.length}, Compressed length: ${encoded.length}`);
+        // console.log(`Original length: ${longString.length}, Compressed length: ${encodedCompressed.length}`);
 
-        expect(lz77.decompress(lz77.decodeBitstring(encoded))).toEqual(longString);
+        expect(lz77.safeDecode(encodedCompressed)).toEqual(longString);
     });
 
     test(`Should compress & decompress real-world test using LZ77 algorithm with windowSize ${i}`, () => {
-        const compressed = lz77.compress(rwt);
-        const encoded = lz77.encodeBitstring(compressed);
+        const encodedCompressed = lz77.safeEncode(rwt);
 
-        // console.log(`Original length: ${rwt.length}, Compressed length: ${encoded.length}`);
+        // console.log(`Original length: ${rwt.length}, Compressed length: ${encodedCompressed.length}`);
 
-        expect(lz77.decompress(lz77.decodeBitstring(encoded))).toEqual(rwt);
+        expect(lz77.safeDecode(encodedCompressed)).toEqual(rwt);
     });
 }
