@@ -68,6 +68,29 @@ class Base {
     remap4to5chars(input, transform) {
 
     }
+
+    encodeBitstring(input) {
+        /**
+         * Format: [ length of length of original string (1 byte) |  length of original bitstring | original string, padded to bytes ]
+         */
+        const slen = input.length.toString(16).padStart(2, 0);
+        const slenlen = slen.length.toString(16).padStart(2, 0);
+        const padded = input.match(/.{1,8}/g).map(c => parseInt(c, 2).toString(16).padStart(2, 0)).join('');
+
+        return `${slenlen}${slen}${padded}`;
+    }
+
+    decodeBitstring(input) {
+        const slenlen = parseInt(input.substring(0, 2), 16); // Length of slen
+        const slen = parseInt(input.substring(2, 2 + slenlen), 16); // Length of original bitstring
+        const parts = input.substring(2 + slenlen).match(/.{2}/g).map(c => parseInt(c, 16).toString(2).padStart(8, 0));
+
+        if (slen % 8 !== 0) {
+            parts[parts.length - 1] = parts[parts.length - 1].substring(8 - (slen % 8));
+        }
+
+        return parts.join('');
+    }
 }
 
 export default Base;
