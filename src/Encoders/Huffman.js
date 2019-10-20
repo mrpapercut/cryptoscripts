@@ -91,6 +91,37 @@ class Huffman extends Base {
 
         return decoded;
     }
+
+    safeEncode(input) {
+        const encoded = this.encode(input);
+        const encodedBitstring = this.encodeBitstring(encoded);
+
+        let encodingTable = [];
+        for (let i in this.encoding) {
+            encodingTable.push(this.encodeBitstring(`${i.charCodeAt(0).toString(2).padStart(8, 0)}${this.encoding[i]}`));
+        }
+
+        return `${encodingTable.join(':')}:${encodedBitstring}`;
+    }
+
+    safeDecode(input) {
+        const parts = input.split(':');
+        const encodedBitstring = parts.pop();
+        const bitstring = this.decodeBitstring(encodedBitstring);
+
+        const rebuiltTable = {};
+        for (let i = 0; i < parts.length; i++) {
+            const decodedBitstringArr = this.decodeBitstring(parts[i]).match(/.{1,8}/g);
+            // The first byte (as bitstring) is the encoded character
+            const char = decodedBitstringArr.shift();
+            // The rest of the bytes is the encoded Huffman value for that character
+            const val = decodedBitstringArr.join('');
+
+            rebuiltTable[String.fromCharCode(parseInt(char, 2))] = val;
+        };
+
+        return this.decode(bitstring, rebuiltTable);
+    }
 }
 
 export default Huffman;
