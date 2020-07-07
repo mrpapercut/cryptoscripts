@@ -62,6 +62,7 @@ test('Should encode short string using yEnc', () => {
 
 test('Should decode yEncoded short string', () => {
     const encodedString = encoder.encode(shortString);
+
     expect(encoder.decode(encodedString)).toEqual(shortString);
 });
 
@@ -71,5 +72,6 @@ test('Should encode long string using yEnc', () => {
 
 test('Should decode yEncoded long string', () => {
     const encodedString = encoder.encode(longString);
+
     expect(encoder.decode(encodedString)).toEqual(longString);
 });

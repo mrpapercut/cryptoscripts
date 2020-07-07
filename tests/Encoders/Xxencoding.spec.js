@@ -27,6 +27,7 @@ test('Should encode short string using xxencoding', () => {
 
 test('Should decode xxencoded short string', () => {
     const encodedString = encoder.encode(shortString);
+
     expect(encoder.decode(encodedString)).toEqual(shortString);
 });
 
@@ -36,5 +37,6 @@ test('Should encode long string using xxencoding', () => {
 
 test('Should decode xxencoded long string', () => {
     const encodedString = encoder.encode(longString);
+
     expect(encoder.decode(encodedString)).toEqual(longString);
 });

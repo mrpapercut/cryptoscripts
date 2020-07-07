@@ -34,6 +34,7 @@ test('Should encode short string using uuencoding', () => {
 
 test('Should decode uuencoded short string', () => {
     const encodedString = encoder.encode(shortString);
+
     expect(encoder.decode(encodedString)).toEqual(shortString);
 });
 
@@ -43,5 +44,6 @@ test('Should encode long string using uuencoding', () => {
 
 test('Should decode uuencoded long string', () => {
     const encodedString = encoder.encode(longString);
+
     expect(encoder.decode(encodedString)).toEqual(longString);
 });
