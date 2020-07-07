@@ -8,7 +8,7 @@ class NumberFormatter {
     }
 
     toHex(numstr) {
-        return `0x${parseInt(numstr, 10).toString(16)}`
+        return `0x${parseInt(numstr, 10).toString(16)}`;
     }
 
     toOct(numstr) {
@@ -24,8 +24,8 @@ class NumberFormatter {
     }
 
     substrAdd(numstr) {
-        let n = parseInt(numstr, 10);
-        return 0 > (0.5 - Math.random())
+        const n = parseInt(numstr, 10);
+        return (0.5 - Math.random()) < 0
             ? `(${this.randConvert(n - Math.floor(Math.sqrt(n)))}+${this.randConvert(Math.floor(Math.sqrt(n)))})`
             : `(${this.randConvert(n + Math.floor(Math.sqrt(n)))}-${this.randConvert(Math.floor(Math.sqrt(n)))})`;
     }
@@ -44,7 +44,7 @@ class NumberFormatter {
         let i = 2;
         let limit = Math.sqrt(n);
 
-        let res = [];
+        const res = [];
 
         while (i <= limit) {
             if (n % i === 0) {
@@ -67,14 +67,14 @@ class NumberFormatter {
         const d = {};
         const fac = this.factor(n);
 
-        for (let f in fac) {
+        for (const f in fac) {
             d[fac[f]] = typeof d[fac[f]] === 'undefined' ? 1 : d[fac[f]] + 1;
         }
 
         const sorted = Object.keys(d).sort(() => 0.5 - Math.random());
         const res = [];
 
-        for (let e in sorted) {
+        for (const e in sorted) {
             if (d[sorted[e]] > 1) {
                 res.push(`${this.randConvert(sorted[e])}**${this.randConvert(d[sorted[e]])}`);
             } else {

@@ -6,16 +6,16 @@ class Uuencoding extends Base {
     }
 
     encode(input) {
-        let inputArray = new Uint8Array(input.length);
-        for (let i in input) inputArray[i] = input.charCodeAt(i);
+        const inputArray = new Uint8Array(input.length);
+        for (const i in input) inputArray[i] = input.charCodeAt(i);
 
-        let charArr = new Array(3);
+        const charArr = new Array(3);
 
         let len = input.length;
         let [i, j, k, s] = [0, 0, 0, 0];
 
-        let lines = new Array();
-        let line = new Array();
+        const lines = [];
+        let line = [];
 
         while (len--) {
             charArr[i++] = inputArray[k++];
@@ -32,7 +32,7 @@ class Uuencoding extends Base {
 
             if (k % 45 === 0) {
                 lines.push(String.fromCharCode(77) + line.join('') + '\n');
-                line = new Array();
+                line = [];
             }
         }
 
@@ -66,7 +66,7 @@ class Uuencoding extends Base {
             // End of input is indicated with charCode 96
             if (curArr[0] === 96) return acc + '';
 
-            let origLen = curArr[0] - 32;
+            const origLen = curArr[0] - 32;
             let curLen = curArr.length;
             let i = 0;
             let k = 1; // Skip first character because it indicates length
@@ -77,10 +77,10 @@ class Uuencoding extends Base {
                 if (i === 4) {
                     lineRes.push(
                         resArr.map(c => c.toString(2).padStart(6, 0))
-                        .join('')
-                        .match(/(.{8})/g)
-                        .map(m => String.fromCharCode(parseInt(m, 2)))
-                        .join('')
+                            .join('')
+                            .match(/(.{8})/g)
+                            .map(m => String.fromCharCode(parseInt(m, 2)))
+                            .join('')
                     );
 
                     i = 0;

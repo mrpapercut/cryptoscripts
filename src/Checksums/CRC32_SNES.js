@@ -12,9 +12,10 @@ class CRC32_SNES extends Base {
 
     createTable() {
         return new Array(256).fill().map((_, c) => {
-            new Array(8).fill().forEach(() =>
-                c = ((c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1))
-            );
+            new Array(8).fill().forEach(() => {
+                c = ((c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1));
+            });
+
             return c;
         });
     }

@@ -17,7 +17,6 @@ class YEnc extends Base {
         let length = inputArray.length;
         let line = [];
         let i = 0;
-        let j = 0;
 
         while (length--) {
             let nc = (inputArray[i++] + 42) % 256;
@@ -47,8 +46,11 @@ class YEnc extends Base {
 
         if (!lines[0].match(/^=ybegin/)) return 'Invalid yEncoding';
 
-        // Get info from header
-        const [fm, linelen, decodelen, filename] = lines[0].match(/=ybegin line=(\d+) size=(\d*) name=(.*)/);
+        /*
+         Get info from header
+         Format: [line length, decode length, filename]
+        */
+        const [, , decodelen] = lines[0].match(/=ybegin line=(\d+) size=(\d*) name=(.*)/);
         lines.shift();
 
         // Remove last line of whitespace

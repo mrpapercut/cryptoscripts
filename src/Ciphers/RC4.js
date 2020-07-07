@@ -8,7 +8,7 @@ class RC4 extends Base {
     createBox(key) {
         let x = 0;
         let t;
-        let box = Array(256).fill(0).map((_, i) => i);
+        const box = Array(256).fill(0).map((_, i) => i);
 
         for (let i = 0; i < 256; i++) {
             x = (x + box[i] + key.charCodeAt(i % key.length)) % 256;
@@ -24,10 +24,10 @@ class RC4 extends Base {
         let x = 0;
         let y = 0;
         let t;
-        let res = [];
-        let box = this.createBox(key);
+        const res = [];
+        const box = this.createBox(key);
 
-        for (let c in data) {
+        for (const c in data) {
             x = (x + 1) % 256;
             y = (y + box[x]) % 256;
 

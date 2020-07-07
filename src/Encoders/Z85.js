@@ -32,7 +32,7 @@ class Z85 extends Base {
             input += '\0';
         }
 
-        let inputArr = this.stringToByteArray(input);
+        const inputArr = this.stringToByteArray(input);
 
         const encoded = [];
 
@@ -60,7 +60,7 @@ class Z85 extends Base {
         let destcount = 0;
         let value = 0;
 
-        let inputArr = this.stringToByteArray(input);
+        const inputArr = this.stringToByteArray(input);
 
         const decoded = [];
 

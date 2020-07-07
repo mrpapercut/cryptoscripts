@@ -4,7 +4,7 @@ class Base {
     }
 
     bitstringToByteArray(input) {
-        let output = new Uint8Array(input.length / 8);
+        const output = new Uint8Array(input.length / 8);
 
         for (let i = 0, j = 0; i < input.length; i += 8) {
             output[j++] = parseInt(input.substring(i, i + 8), 2);
@@ -14,25 +14,25 @@ class Base {
     }
 
     byteArrayToBitstring(input) {
-        let output = [];
+        const output = [];
 
-        for (let i in input) output[i] = input[i].toString(2).padStart(8, 0);
+        for (const i in input) output[i] = input[i].toString(2).padStart(8, 0);
 
         return output.join('');
     }
 
     stringToByteArray(input) {
-        let output = new Uint8Array(input.length);
+        const output = new Uint8Array(input.length);
 
-        for (let i in input) output[i] = input.charCodeAt(i);
+        for (const i in input) output[i] = input.charCodeAt(i);
 
         return output;
     }
 
     byteArrayToString(input) {
-        let output = [];
+        const output = [];
 
-        for (let i in input) output[i] = String.fromCharCode(input[i]);
+        for (const i in input) output[i] = String.fromCharCode(input[i]);
 
         return output.join('');
     }
@@ -43,7 +43,8 @@ class Base {
 
     stringToHex(str) {
         let res = '';
-        for (let i in str) {
+
+        for (const i in str) {
             res += str[i].charCodeAt(0).toString(16).padStart(2, 0);
         }
 

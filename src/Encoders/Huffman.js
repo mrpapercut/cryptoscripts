@@ -16,19 +16,19 @@ class Huffman extends Base {
         const count_chars = {};
         for (let i = 0; i < str.length; i++) {
             if (str[i] in count_chars) {
-                count_chars[str[i]] ++;
+                count_chars[str[i]]++;
             } else {
                 count_chars[str[i]] = 1;
             }
         }
 
         const pq = new BinaryHeap(x => x[0]);
-        for (let ch in count_chars) {
+        for (const ch in count_chars) {
             pq.push([count_chars[ch], ch]);
         }
 
         while (pq.size() > 1) {
-            let [pair1, pair2] = [pq.pop(), pq.pop()];
+            const [pair1, pair2] = [pq.pop(), pq.pop()];
 
             pq.push([
                 pair1[0] + pair2[0],
@@ -36,7 +36,7 @@ class Huffman extends Base {
             ]);
         }
 
-        let tree = pq.pop();
+        const tree = pq.pop();
         this.encoding = {};
         this._generate_encoding(tree[1], '');
 
@@ -51,8 +51,8 @@ class Huffman extends Base {
 
     _generate_encoding(ary, prefix) {
         if (ary instanceof Array) {
-            this._generate_encoding(ary[0], prefix + "0");
-            this._generate_encoding(ary[1], prefix + "1");
+            this._generate_encoding(ary[0], prefix + '0');
+            this._generate_encoding(ary[1], prefix + '1');
         } else {
             this.encoding[ary] = prefix;
         }
@@ -60,7 +60,7 @@ class Huffman extends Base {
 
     inspect_encoding() {
         let response = '';
-        for (var ch in this.encoding) {
+        for (const ch in this.encoding) {
             response += "'" + ch + "': " + this.encoding[ch];
         }
 
@@ -70,16 +70,16 @@ class Huffman extends Base {
     decode(encoded, encodingTable) {
         encodingTable = encodingTable || this.encoding;
 
-        var rev_enc = {};
-        for (var ch in encodingTable) {
+        const rev_enc = {};
+        for (const ch in encodingTable) {
             rev_enc[encodingTable[ch]] = ch;
         }
 
-        var decoded = "";
-        var pos = 0;
+        let decoded = '';
+        let pos = 0;
 
         while (pos < encoded.length) {
-            var key = ""
+            let key = '';
 
             while (!(key in rev_enc)) {
                 key += encoded[pos];
@@ -96,8 +96,8 @@ class Huffman extends Base {
         const encoded = this.encode(input);
         const encodedBitstring = this.encodeBitstring(encoded);
 
-        let encodingTable = [];
-        for (let i in this.encoding) {
+        const encodingTable = [];
+        for (const i in this.encoding) {
             encodingTable.push(this.encodeBitstring(`${i.charCodeAt(0).toString(2).padStart(8, 0)}${this.encoding[i]}`));
         }
 

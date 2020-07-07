@@ -8,18 +8,18 @@ class Base64 extends Base {
     }
 
     encode(input) {
-        let inputArray = this.stringToByteArray(input);
+        const inputArray = this.stringToByteArray(input);
         let length = inputArray.length;
 
         const charArr = new Array(3);
-        const b64Arr = new Array();
+        const b64Arr = [];
 
         let i = 0; // Count 0-3 in charArr
         let j = 0; // Counts through all characters in inputArray
         let s = 0; // Counts through all characters in output
         while (length--) {
             charArr[i++] = inputArray[j++];
-            if (i == 3) {
+            if (i === 3) {
                 const remappedChars = this.remap3to4chars(charArr);
 
                 for (let k = 0; k < 4; k++) {
@@ -65,16 +65,16 @@ class Base64 extends Base {
             if (i === 4) {
                 result.push(
                     charArray.map(c => { // Get original char from base64_chars
-                        let index = this.base64_chars.indexOf(c);
+                        const index = this.base64_chars.indexOf(c);
                         if (index !== -1) {
                             return index.toString(2).padStart(6, 0);
                         }
                     })
-                    .filter(Boolean) // Clear empty values in array
-                    .join('')
-                    .match(/(.{8})/g) // Split string into pairs of 8bits
-                    .map(m => String.fromCharCode(parseInt(m, 2))) // 8bit to Character
-                    .join('')
+                        .filter(Boolean) // Clear empty values in array
+                        .join('')
+                        .match(/(.{8})/g) // Split string into pairs of 8bits
+                        .map(m => String.fromCharCode(parseInt(m, 2))) // 8bit to Character
+                        .join('')
                 );
 
                 i = 0;

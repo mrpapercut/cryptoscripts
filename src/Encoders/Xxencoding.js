@@ -8,16 +8,16 @@ class Xxenconding extends Base {
     }
 
     encode(input) {
-        let inputArray = new Uint8Array(input.length);
-        for (let i in input) inputArray[i] = input.charCodeAt(i);
+        const inputArray = new Uint8Array(input.length);
+        for (const i in input) inputArray[i] = input.charCodeAt(i);
 
-        let charArr = new Array(3);
+        const charArr = new Array(3);
 
         let len = input.length;
         let [i, j, k, s] = [0, 0, 0, 0];
 
-        let lines = new Array();
-        let line = new Array();
+        const lines = [];
+        let line = [];
 
         while (len--) {
             charArr[i++] = inputArray[k++];
@@ -34,7 +34,7 @@ class Xxenconding extends Base {
 
             if (k % 45 === 0) {
                 lines.push(this.chars[45] + line.join(''));
-                line = new Array();
+                line = [];
             }
         }
 
@@ -66,7 +66,7 @@ class Xxenconding extends Base {
             // Last line is of length 0
             if (curArr.length === 0) return acc + '';
 
-            let origLen = this.chars.indexOf(String.fromCharCode(curArr[0]));
+            const origLen = this.chars.indexOf(String.fromCharCode(curArr[0]));
             let curLen = curArr.length;
             let i = 0;
             let k = 1; // Skip first character because it indicates length
@@ -77,15 +77,15 @@ class Xxenconding extends Base {
                 if (i === 4) {
                     lineRes.push(
                         resArr.map(c => {
-                            let index = this.chars.indexOf(String.fromCharCode(c));
+                            const index = this.chars.indexOf(String.fromCharCode(c));
                             if (index !== -1) {
                                 return index.toString(2).padStart(6, 0);
                             }
                         })
-                        .join('')
-                        .match(/(.{8})/g)
-                        .map(m => String.fromCharCode(parseInt(m, 2)))
-                        .join('')
+                            .join('')
+                            .match(/(.{8})/g)
+                            .map(m => String.fromCharCode(parseInt(m, 2)))
+                            .join('')
                     );
 
                     i = 0;

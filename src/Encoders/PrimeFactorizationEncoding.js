@@ -13,10 +13,11 @@ class PrimeFactorizationEncoding extends Base {
             .match(/.{1,4}/g) // Split in groups of 1-4 characters
             .map(s => {
                 // Get byte of each separate character and concat as 1 8-byte number:
-                let mappedChars = s.split('')
+                const mappedChars = s.split('')
                     .map(c => c.charCodeAt(0).toString(16).padStart(2, 0))
                     .join('')
                     .padEnd(8, 0);
+
                 return `0x${mappedChars}`;
             })
             .map(num => numberFormatter.format(eval(num)));
