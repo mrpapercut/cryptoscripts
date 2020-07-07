@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/mrpapercut/cryptoscripts.svg?branch=master)](https://travis-ci.org/mrpapercut/cryptoscripts)
+
 # cryptoscripts
 Assorted algorithms &amp; other crypto-related scripts. All written in Javascript, most from scratch
 
