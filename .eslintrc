@@ -1,0 +1,25 @@
+{
+    "extends": "standard",
+    "rules": {
+        "indent": [
+            "warn",
+            4
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "camelcase": "off",
+        "no-eval": "off",
+        "no-undef": "off",
+        "no-useless-constructor": "off",
+        "space-before-function-paren": "off"
+    },
+    "env": {
+        "node": true
+    }
+}
