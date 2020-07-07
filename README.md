@@ -19,6 +19,7 @@ Assorted algorithms &amp; other crypto-related scripts. All written in Javascrip
 - xxencoding
 - yEnc
 - prime factorization encoding (custom)
+- Z85
 
 # Wishlist:
 ## Hashers
@@ -28,6 +29,7 @@ Assorted algorithms &amp; other crypto-related scripts. All written in Javascrip
 - SHA1
 - SHA2
 - SHA3
+- xxHash
 - HMAC
 - RIPEMD-160
 - bcrypt
@@ -61,9 +63,6 @@ Assorted algorithms &amp; other crypto-related scripts. All written in Javascrip
 ## Checksums
 - Adler-32
 - fletcher-4/8/16/32
-
-## Encoders
-- Ascii85/Z85 (https://rfc.zeromq.org/spec:32/Z85)
 
 # Miscellaneous
 - Luhn algorithm
