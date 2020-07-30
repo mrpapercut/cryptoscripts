@@ -46,7 +46,7 @@ Assorted algorithms &amp; other crypto-related scripts. All written in Javascrip
 ## Ciphers
 ### Stream ciphers
 - Rabbit
-- Salsa20/ChaCha
+- Salsa20/ChaCha (https://github.com/thesimj/js-chacha20)
 - HC-256
 - SOSEMANUK
 
