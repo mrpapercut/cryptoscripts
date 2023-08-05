@@ -77,7 +77,7 @@ class XxHash extends Base {
 
         while (dataIndex <= stopBlock) {
             this.state = this.process(this.buffer, this.state[0], this.state[1], this.state[2], this.state[3]);
-            
+            dataIndex += 32;
         }
     }
 }
