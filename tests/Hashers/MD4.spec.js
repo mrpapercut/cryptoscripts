@@ -7,24 +7,24 @@ import {
 
 const hasher = new MD4();
 
-test('Should encode and decode short string using Z85 encoding', () => {
-    const encodedString = encoder.encode(shortString);
+test('Should encode and decode short string using MD4 hasher', () => {
+    const encodedString = hasher.encode(shortString);
 
-    expect(encoder.decode(encodedString)).toEqual(shortString);
+    expect(hasher.decode(encodedString)).toEqual(shortString);
 });
 
-test('Should encode and decode long string using Z85 encoding', () => {
-    const encodedString = encoder.encode(longString);
+test('Should encode and decode long string using MD4 hasher', () => {
+    const encodedString = hasher.encode(longString);
 
-    expect(encoder.decode(encodedString)).toEqual(longString);
+    expect(hasher.decode(encodedString)).toEqual(longString);
 });
 
-test('Should encode and decode its own sourcecode using Z85 encoding', (done) => {
-    loadSourcefile('../src/Encoders/Z85.js').then((res, rej) => {
+test('Should encode and decode its own sourcecode using MD4 hasher', (done) => {
+    loadSourcefile('../src/Hashers/MD4.js').then((res, rej) => {
         const sourcecode = res.toString();
-        const encodedString = encoder.encode(sourcecode);
+        const encodedString = hasher.encode(sourcecode);
 
-        expect(encoder.decode(encodedString)).toEqual(sourcecode);
+        expect(hasher.decode(encodedString)).toEqual(sourcecode);
 
         done();
     });

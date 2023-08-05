@@ -33,7 +33,7 @@ class MD4 extends Base {
             0
         ];
 
-        this.buffer = new UInt32Array(64);
+        this.buffer = new Uint32Array(64);
     }
 
     F(x, y, z) {
